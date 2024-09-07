@@ -4,8 +4,8 @@ import redis from "redis"
 export async function socketConfig(httpServer) {
 
     const MAX_CONNECTIONS = 3
-    const CONNECTION_TIMEOUT = 10000
-    const connectionDataClearTime = 60000 * 60
+    const CONNECTION_TIMEOUT = 60000 * 3 // 3 Minutes
+    const connectionDataClearTime = 60000 * 60 // 1 Hour
     const connectedClients = new Map()
     const redisClient = redis.createClient({
         url: 'redis://127.0.0.1:6379'
@@ -33,9 +33,7 @@ export async function socketConfig(httpServer) {
         const clientIp = socket?.handshake?.address
         let currentConnections = connectedClients.get(clientIp) || 0
 
-        console.log("Incrementing totalConnections...");
         redisClient.incr("totalConnections", (err, totalConnections) => {
-            console.log("In callback");
             if (err) {
                 console.warn(`Error occurred during increment: ${err}`);
                 return;
