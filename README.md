@@ -6,5 +6,12 @@
 6. for stoping all websocket-servers ("pm2 stop websocket-server")
 7. for delete all websocket-servers ("pm2 delete websocket-server")
 
+Requirements
+------------
+* Node.js
+* Npm
+* docker ( optional)
+* Redis  
 
-* if single make connection request 3 times in a 1 hour only he/she able to connect after 3 minutes.
+
+* if single user make a connection request more than 3 times in a 1 hour only he/she able to make a another request after 3 minutes.

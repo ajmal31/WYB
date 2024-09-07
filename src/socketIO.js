@@ -65,7 +65,6 @@ export async function socketConfig(httpServer) {
                 message: data,
                 username: "Anonymous",
                 currentUser: true,
-                connectionCount
 
             }
             //emiting to all connected users
